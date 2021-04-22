@@ -10,8 +10,9 @@ K4=K;
 
 p=25; % number of points along x axis
 %input=linspace(0.01,0.999,p); % where input=(1/KD)
-input=linspace(0.01,10,p); % where input=(1/KD)
+input=linspace(0.01,100,p); % where input=(1/KD)
 %input=linspace(0.01,5,p); % where input=(1/KD)
+
 
 % initialize theta, x_roots, y_roots vectors
 theta=zeros(1,p); 
@@ -27,24 +28,23 @@ f=zeros(1,p);
 
 for i=1:p
     %compute theta(i)
-    theta(i)=(1/(1-(1/input(i)))); 
+    theta(i)=(1/(1+(1/input(i)))); 
    
     % compute x_roots(i,:) [note roots will output a 1x2 vector]
     % Quadratic function: 0 = d(x^2) + ex + f
     d(i) = 5*theta(i) - 1; 
     e(i) = K1 + 1 + 5*theta(i)*K2 - 5*theta(i);
-    f(i) = 5*theta(i)*K2; 
+    f(i) = -5*theta(i)*K2; 
     
     %vector of only the positive roots of x 
-    x(i)= -e(i) + sqrt(((e(i)^2)-(4*d(i)*f(i)))/(2*d(i))); 
-    %x(i)= -e(i) - sqrt(((e(i)^2)-(4*d(i)*f(i)))/(2*d(i))); 
-    %compute y_roots(:,p)
-    a(i) = 1 - 10*x(i);
-    b(i) = 10*x(i) + 10*x(i)*K4 + K3 + 1;
-    c(i) = 10*x(i)*K4;
+    x(i)= -e(i) + sqrt(((e(i)^2)-(4*d(i)*f(i))))/(2*d(i)); 
+   
+    a(i) = -1 + 10*x(i);
+    b(i) = -10*x(i) + 10*x(i)*K4 + K3 + 1;
+    c(i) = -10*x(i)*K4;
     
     %vector of only the positive roots of y 
-    y(i)= -b(i) + sqrt(((b(i)^2)-(4*a(i)*c(i)))/(2*a(i))); 
+    y(i)= -b(i) + sqrt(((b(i)^2)-(4*a(i)*c(i))))/(2*a(i)); 
 end
 figure(1)
 hold on 
@@ -81,8 +81,8 @@ K4=K;
 
 p=25; % number of points along x axis
 %input=linspace(0.001,0.999,p); % where input=(1/KD)
-input=linspace(0.01,10,p); % where input=(1/KD)
-
+%input=linspace(0.01,10,p); % where input=(1/KD)
+input=linspace(0.01,100,p); % where input=(1/KD)
 
 % initialize theta, x_roots, y_roots vectors
 theta=zeros(1,p); 
@@ -98,24 +98,24 @@ f=zeros(1,p);
 
 for i=1:p
     %compute theta(i)
-    theta(i)=(1/(1-(1/input(i)))); 
+    theta(i)=(1/(1+(1/input(i))));  
    
     % compute x_roots(i,:) [note roots will output a 1x2 vector]
     % Quadratic function: 0 = d(x^2) + ex + f
     d(i) = 5*theta(i) - 1; 
     e(i) = K1 + 1 + 5*theta(i)*K2 - 5*theta(i);
-    f(i) = 5*theta(i)*K2; 
+    f(i) = -5*theta(i)*K2; 
     
     %vector of only the positive roots of x 
-    x(i)= -e(i) + sqrt(((e(i)^2)-(4*d(i)*f(i)))/(2*d(i))); 
+    x(i)= -e(i) + sqrt(((e(i)^2)-(4*d(i)*f(i))))/(2*d(i)); 
     
     %compute y_roots(:,p)
-    a(i) = 1 - 10*x(i);
-    b(i) = 10*x(i) + 10*x(i)*K4 + K3 + 1;
-    c(i) = 10*x(i)*K4;
+    a(i) = -1 + 10*x(i);
+    b(i) = -10*x(i) + 10*x(i)*K4 + K3 + 1;
+    c(i) = -10*x(i)*K4;
     
     %vector of only the positive roots of y 
-    y(i)= -b(i) + sqrt(((b(i)^2)-(4*a(i)*c(i)))/(2*a(i))); 
+    y(i)= -b(i) + sqrt(((b(i)^2)-(4*a(i)*c(i))))/(2*a(i)); 
 end
 figure(2)
 hold on 
